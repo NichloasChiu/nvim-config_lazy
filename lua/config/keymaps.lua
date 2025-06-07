@@ -48,3 +48,7 @@ keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 
 --  插入模式下jk退出插入模式
 keymap.set("i", "jk", "<Esc>", { noremap = true, silent = true, desc = "Exit insert mode with jk" })
+
+-- 禁用q宏命令
+keymap.set("n", "Q", "<Nop>", { desc = "用 Q 来代替 q 键录制宏" })
+keymap.set("n", "q", "<Nop>", { desc = "禁用 q 键录制宏" })
