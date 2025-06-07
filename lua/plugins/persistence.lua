@@ -1,0 +1,74 @@
+local function close_cwd_bufnr()
+  -- 获取所有缓冲区号
+  local buffers = vim.api.nvim_list_bufs()
+  for _, bufnr in ipairs(buffers) do
+    -- 获取缓冲区对应的文件名（完整路径）
+    local bufname = vim.api.nvim_buf_get_name(bufnr)
+    -- 获取当前工作目录（字符串），没有则为空字符串
+    local cwd_path = vim.uv.cwd() or ""
+    -- 如果缓冲区路径和当前工作目录相同，说明是工作目录缓冲区
+    if bufname == cwd_path then
+      -- 强制关闭该缓冲区
+      vim.api.nvim_buf_delete(bufnr, { force = true })
+      break -- 找到后退出循环
+    end
+  end
+end
+
+return {
+  "folke/persistence.nvim", -- 插件名
+
+  init = function()
+    -- Vim 启动时执行的自动命令
+    vim.api.nvim_create_autocmd("VimEnter", {
+      desc = "Restore previous directory session if neovim opened with no arguments",
+      nested = true, -- 允许在此事件中触发其它自动命令
+      callback = function()
+        local should_skip
+
+        -- 获取当前缓冲区的前两行
+        local lines = vim.api.nvim_buf_get_lines(0, 0, 2, false)
+
+        -- 以下条件判断是否跳过自动恢复会话：
+        if
+          vim.fn.argc() > 0 -- 如果启动时传入了文件参数，则跳过恢复
+          or #lines > 1 -- 当前缓冲区行数大于1，跳过
+          or (#lines == 1 and lines[1]:len() > 0) -- 第一行非空，跳过
+          or #vim.tbl_filter(function(bufnr) -- 当前有多个被列出的缓冲区，跳过
+              return vim.bo[bufnr].buflisted
+            end, vim.api.nvim_list_bufs())
+            > 1
+          or not vim.o.modifiable -- 当前缓冲区不可修改，跳过
+        then
+          should_skip = true
+        else
+          -- 检查启动参数中是否包含 -b, -c, +cmd, -S 这些会影响行为的参数
+          for _, arg in pairs(vim.v.argv) do
+            if arg == "-b" or arg == "-c" or vim.startswith(arg, "+") or arg == "-S" then
+              should_skip = true
+              break
+            end
+          end
+        end
+
+        if should_skip then
+          return
+        end
+
+        -- 尝试加载之前保存的会话（目录会话）
+        if
+          pcall(function()
+            require("persistence").load()
+            -- hack：加载会话后，自动关闭工作目录缓冲区页面
+            close_cwd_bufnr()
+          end)
+        then
+          -- 延迟执行 FileType 自动命令（触发文件类型相关设置）
+          vim.schedule(function()
+            vim.cmd.doautocmd("FileType")
+          end)
+        end
+      end,
+    })
+  end,
+}

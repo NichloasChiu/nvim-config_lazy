@@ -1,0 +1,67 @@
+-- 打开 Neo-tree 文件树，光标选中文件后，按 Y 会弹出一个选择框。
+--
+-- 选择想要复制的路径或文件名格式（比如文件名、扩展名、绝对路径、相对路径、URI等）。
+--
+-- 选中后，内容会自动复制到系统剪贴板，并显示通知。
+--
+return {}
+-- return {
+--   "nvim-neo-tree/neo-tree.nvim",
+--   opts = {
+--     commands = {
+--       -- 自定义命令 copy_selector，用于弹出选择框复制文件相关信息
+--       copy_selector = function(state)
+--         local node = state.tree:get_node() -- 获取当前选中文件节点
+--         local filepath = node:get_id() -- 文件的完整路径
+--         local filename = node.name -- 文件名
+--         local modify = vim.fn.fnamemodify -- 用于处理路径的函数
+--
+--         -- 准备多种格式的文件路径/名选项
+--         local vals = {
+--           ["BASENAME"] = modify(filename, ":r"), -- 去除扩展名的文件名
+--           ["EXTENSION"] = modify(filename, ":e"), -- 扩展名
+--           ["FILENAME"] = filename, -- 完整文件名
+--           ["PATH (CWD)"] = modify(filepath, ":."), -- 相对当前工作目录路径
+--           ["PATH (HOME)"] = modify(filepath, ":~"), -- 相对家目录路径
+--           ["PATH"] = filepath, -- 绝对路径
+--           ["URI"] = vim.uri_from_fname(filepath), -- 文件URI格式
+--         }
+--
+--         -- 过滤掉空字符串值，避免显示无效选项
+--         local options = vim.tbl_filter(function(val)
+--           return vals[val] ~= ""
+--         end, vim.tbl_keys(vals))
+--
+--         -- 如果没有有效选项则通知
+--         if vim.tbl_isempty(options) then
+--           vim.notify("No values to copy", vim.log.levels.WARN)
+--           return
+--         end
+--
+--         table.sort(options) -- 对选项按字母排序
+--
+--         -- 弹出选择菜单，显示格式为：键名: 对应值
+--         vim.ui.select(options, {
+--           prompt = "Choose to copy to clipboard:",
+--           format_item = function(item)
+--             return ("%s: %s"):format(item, vals[item])
+--           end,
+--         }, function(choice)
+--           local result = vals[choice]
+--           if result then
+--             -- 复制选中值到系统剪贴板
+--             vim.notify(("Copied: `%s`"):format(result))
+--             vim.fn.setreg("+", result)
+--           end
+--         end)
+--       end,
+--     },
+--
+--     window = {
+--       mappings = {
+--         -- 绑定按键 Y 调用自定义命令 copy_selector
+--         Y = "copy_selector",
+--       },
+--     },
+--   },
+-- }

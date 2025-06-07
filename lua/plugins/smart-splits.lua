@@ -1,0 +1,79 @@
+-- 读取终端环境变量，转为小写，默认空字符串
+return {}
+-- local term = vim.trim((vim.env.TERM_PROGRAM or ""):lower())
+--
+-- -- 判断是否使用了终端复用器（tmux、wezterm 或 kitty）
+-- local mux = term == "tmux" or term == "wezterm" or vim.env.KITTY_LISTEN_ON
+--
+-- return {
+--   "mrjones2014/smart-splits.nvim", -- 插件名
+--   lazy = true, -- 延迟加载插件
+--   -- 如果检测到终端复用器，事件设为 VeryLazy，提前加载；否则不设置事件，默认懒加载
+--   event = mux and "VeryLazy" or nil,
+--
+--   -- 定义快捷键绑定，支持移动光标和调整分屏大小
+--   keys = {
+--     {
+--       "<c-h>",
+--       function()
+--         require("smart-splits").move_cursor_left()
+--       end,
+--       desc = "Move to left split",
+--     },
+--     {
+--       "<c-j>",
+--       function()
+--         require("smart-splits").move_cursor_down()
+--       end,
+--       desc = "Move to below split",
+--     },
+--     {
+--       "<c-k>",
+--       function()
+--         require("smart-splits").move_cursor_up()
+--       end,
+--       desc = "Move to above split",
+--     },
+--     {
+--       "<c-l>",
+--       function()
+--         require("smart-splits").move_cursor_right()
+--       end,
+--       desc = "Move to right split",
+--     },
+--     {
+--       "<c-up>",
+--       function()
+--         require("smart-splits").resize_up()
+--       end,
+--       desc = "Resize split up",
+--     },
+--     {
+--       "<c-down>",
+--       function()
+--         require("smart-splits").resize_down()
+--       end,
+--       desc = "Resize split down",
+--     },
+--     {
+--       "<c-left>",
+--       function()
+--         require("smart-splits").resize_left()
+--       end,
+--       desc = "Resize split left",
+--     },
+--     {
+--       "<c-right>",
+--       function()
+--         require("smart-splits").resize_right()
+--       end,
+--       desc = "Resize split right",
+--     },
+--   },
+--
+--   -- 插件配置，忽略特定文件类型和缓冲区类型的分屏调整
+--   opts = {
+--     ignored_filetypes = { "nofile", "quickfix", "qf", "prompt" },
+--     ignored_buftypes = { "nofile" },
+--   },
+-- }
