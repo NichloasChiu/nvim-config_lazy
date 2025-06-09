@@ -43,8 +43,8 @@ LazyVim.on_very_lazy(function()
 end)
 
 -- 是主题透明
-vim.cmd([[
-  highlight Normal guibg=NONE ctermbg=NONE
-  highlight NormalNC guibg=NONE ctermbg=NONE
-  highlight NormalFloat guibg=NONE ctermbg=NONE
-]])
+-- vim.cmd([[
+--   highlight Normal guibg=NONE ctermbg=NONE
+--   highlight NormalNC guibg=NONE ctermbg=NONE
+--   highlight NormalFloat guibg=NONE ctermbg=NONE
+-- ]])

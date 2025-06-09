@@ -154,3 +154,28 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     end
   end,
 })
+
+-- 这是一个 Neovim 的自动命令配置，监听 yank 事件。
+--
+-- v:event.operator ==# 'y' 确保只对 yank（复制）操作生效。
+--
+-- system('/mnt/c/Windows/System32/clip.exe', @0) 是通过 clip.exe 把寄存器 0 的内容复制到 Windows 剪贴板。
+--
+-- 由于是在 Linux 子系统（WSL）下，路径使用了 /mnt/c/Windows/System32/clip.exe。
+--
+-- 使用 Neovim 内置的 vim.cmd() 函数，执行一段 VimScript 代码
+vim.cmd([[
+    " 定义一个自动命令组 fix_yank
+    augroup fix_yank
+      " 先清除这个组中已有的自动命令，避免重复
+      autocmd!
+      " 定义自动命令：当触发 TextYankPost（yank 操作完成后）事件时执行
+      autocmd TextYankPost *
+        " 如果触发 yank（复制）操作，并且操作符是 'y'（yank 命令）
+    \ if has_key(v:event, 'operator') && v:event.operator ==# 'y' |
+      \   call system('/mnt/c/Windows/System32/clip.exe', @0) |
+      \ endif
+          " 将寄存器 0（最近 yank 的内容）通过 Windows 的 clip.exe 复制到系统剪贴板
+    " 结束自动命令组
+    augroup END
+  ]])
