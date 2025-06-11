@@ -52,3 +52,12 @@ keymap.set("i", "jk", "<Esc>", { noremap = true, silent = true, desc = "Exit ins
 -- 禁用q宏命令
 keymap.set("n", "Q", "<Nop>", { desc = "用 Q 来代替 q 键录制宏" })
 keymap.set("n", "q", "<Nop>", { desc = "禁用 q 键录制宏" })
+
+-- Visual 模式下，Tab 和 Shift-Tab 做缩进
+vim.keymap.set("v", "<Tab>", ">gv", { desc = "Visual 缩进" })
+vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Visual 反向缩进" })
+
+-- 切换到下一个 Buffer
+vim.keymap.set("n", "<Tab>", ":bnext<CR>", { desc = "下一个 Buffer" })
+-- 切换到上一个 Buffer
+vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", { desc = "上一个 Buffer" })

@@ -3,4 +3,8 @@
 --   -- disable trouble
 --   { "folke/snacks.nvim ", enabled = false },
 -- }
-return {}
+-- return {}
+return {
+  -- disable trouble
+  { "folke/persistence.nvim", enabled = false },
+}
