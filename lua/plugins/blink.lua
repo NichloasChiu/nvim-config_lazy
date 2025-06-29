@@ -220,8 +220,8 @@ return {
       },
       -- 键位映射预设
       keymap = {
-        -- 使用 super-tab 预设
-        preset = "super-tab",
+        ["<Tab>"] = { "accept" }, -- Tab 键接受补全
+        ["<S-Tab>"] = { "select_prev" }, -- Shift+Tab 键选择上一个补全项
       },
     })
   end,
