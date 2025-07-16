@@ -50,8 +50,8 @@ keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 keymap.set("i", "jk", "<Esc>", { noremap = true, silent = true, desc = "Exit insert mode with jk" })
 
 -- 禁用q宏命令
-keymap.set("n", "Q", "<Nop>", { desc = "用 Q 来代替 q 键录制宏" })
-keymap.set("n", "q", "<Nop>", { desc = "禁用 q 键录制宏" })
+-- keymap.set("n", "Q", "<Nop>", { desc = "用 Q 来代替 q 键录制宏" })
+-- keymap.set("n", "q", "<Nop>", { desc = "禁用 q 键录制宏" })
 
 -- Visual 模式下，Tab 和 Shift-Tab 做缩进
 vim.keymap.set("v", "<Tab>", ">gv", { desc = "Visual 缩进" })
