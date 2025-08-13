@@ -10,6 +10,7 @@ return {
   name = "catppuccin",
   lazy = false,
   priority = 1000,
+  commit = "v1.6.0", -- 锁旧版本
   config = function()
     require("catppuccin").setup({
       flavour = "mocha",
