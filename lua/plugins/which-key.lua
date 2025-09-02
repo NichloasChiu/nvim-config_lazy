@@ -32,7 +32,7 @@ return {
             { "<leader>ae", cmd = "<cmd>e ++enc=cp936<cr>", desc = "Sql乱码修正" },
             {
               "<leader>am",
-              cmd = "<cmd>MarkdownPreviewStop<cr> | <cmd>MarkdownPreview<cr>",
+              cmd = "<cmd>set filetype=markdown<cr> | <cmd>MarkdownPreviewStop<cr> | <cmd>MarkdownPreview<cr>",
               desc = "MarkDown预览",
             },
             { "<leader>at", cmd = "<cmd>TableModeToggle<cr>", desc = "MarkDown表模式" },
