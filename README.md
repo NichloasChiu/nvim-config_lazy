@@ -90,6 +90,8 @@ git clone git@github.com:NichloasChiu/nvim-config_lazy.git ~/.config/nvim
 
 - 如何添加新插件？ 在 `lua/plugins/` 添加插件配置，然后执行 `:Lazy sync`。
 
+- Copilot为自动ai码补全插件，安装后需要登录GitHub账号。
+
 ## 联系
 
 如果有问题或建议，欢迎联系我：
