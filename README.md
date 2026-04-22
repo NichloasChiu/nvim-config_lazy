@@ -34,6 +34,12 @@ rm -rf ~/.config/nvim
 rm -rf ~/.local/share/nvim
 rm -rf ~/.local/state/nvim
 rm -rf ~/.cache/nvim
+# 下载最新lazyvim
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+rm -rf ~/.config/nvim/.git
+nvim
+# 删除原默认配置
+rm -rf ~/.config/nvim 
 git clone https://github.com/NichloasChiu/nvim-config_lazy.git ~/.config/nvim
 ```
 
