@@ -29,8 +29,12 @@
 1. 克隆本仓库到本地（假设你已经安装了 Neovim）：
 
 ```bash
-git clone git@github.com:NichloasChiu/nvim-config_lazy.git ~/.config/nvim
-
+# 删除缓存
+rm -rf ~/.config/nvim 
+rm -rf ~/.local/share/nvim
+rm -rf ~/.local/state/nvim
+rm -rf ~/.cache/nvim
+git clone https://github.com/NichloasChiu/nvim-config_lazy.git ~/.config/nvim
 ```
 
 2. 打开 Neovim，LazyNvim 会自动安装并同步插件。
