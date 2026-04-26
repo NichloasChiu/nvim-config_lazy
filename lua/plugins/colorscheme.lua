@@ -10,12 +10,18 @@ return {
   name = "catppuccin",
   lazy = false,
   priority = 1000,
-  commit = "v1.6.0", -- 锁旧版本
   config = function()
     require("catppuccin").setup({
       flavour = "mocha",
       transparent_background = true,
+      integrations = {
+        bufferline = true,
+      },
     })
+
     vim.cmd.colorscheme("catppuccin")
+    -- 强制修复浮动透明
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+    vim.api.nvim_set_hl(0, "WhichKeyFloat", { bg = "NONE" })
   end,
 }

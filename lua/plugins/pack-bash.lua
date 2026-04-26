@@ -8,7 +8,7 @@ return {
 
   -- mason.nvim：自动安装和管理 LSP / DAP / Formatter / Linter 等工具
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     optional = true, -- 可选加载
     opts = { ensure_installed = { "bash-language-server", "shfmt", "shellcheck" } },
     -- 自动安装 bash 相关的工具：

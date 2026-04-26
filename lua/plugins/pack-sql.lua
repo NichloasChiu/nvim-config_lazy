@@ -84,7 +84,7 @@ return {
   end,
   -- Mason 管理并自动安装 sqlfluff 和 sqlfmt 命令行工具
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     optional = true,
     opts = { ensure_installed = { "sqlfluff", "sqlfmt" } },
   },

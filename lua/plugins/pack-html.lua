@@ -44,7 +44,7 @@ return {
 
   -- Mason 插件，自动安装相关 LSP 及工具
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
       ensure_installed = { "html-lsp", "cssmodules-language-server", "css-lsp" },
       -- 自动安装三个语言服务器：
@@ -56,7 +56,7 @@ return {
 
   -- mini.icons 插件，为特定文件类型提供图标
   {
-    "echasnovski/mini.icons",
+    "nvim-mini/mini.icons",
     optional = true,
     opts = {
       filetype = {

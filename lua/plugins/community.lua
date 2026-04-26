@@ -9,7 +9,7 @@ return {
   { import = "lazyvim.plugins.extras.lsp.neoconf" },
 
   -- 导入代码重构工具包
-  { import = "lazyvim.plugins.extras.editor.refactoring" },
+  -- { import = "lazyvim.plugins.extras.editor.refactoring" },
 
   -- 导入任务运行工具 Overseer
   { import = "lazyvim.plugins.extras.editor.overseer" },

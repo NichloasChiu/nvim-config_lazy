@@ -26,6 +26,7 @@ return {
   end,
 
   -- 引入 LazyVim 自带的 Tailwind 语言插件配置
+  -- LazyVim 官方 tailwind 插件
   { import = "lazyvim.plugins.extras.lang.tailwind" },
 
   {
@@ -49,35 +50,35 @@ return {
       },
 
       -- 自定义 LSP 配置的 setup 函数，扩展或过滤默认 filetypes 以及增加文件类型支持
-      setup = {
-        tailwindcss = function(_, opts)
-          -- 获取 LazyVim 内置的 tailwindcss LSP 默认配置
-          local tw = LazyVim.lsp.get_raw_config("tailwindcss")
-
-          -- 如果没有配置文件类型，则初始化为空表
-          opts.filetypes = opts.filetypes or {}
-
-          -- 过滤掉 opts.filetypes_exclude 中指定的文件类型（如果有）
-          --- @param ft string
-          opts.filetypes = vim.tbl_filter(function(ft)
-            return not vim.tbl_contains(opts.filetypes_exclude or {}, ft)
-          end, opts.filetypes)
-
-          -- 深度合并自定义设置，包括让 LSP 识别 Elixir 相关的模板语言文件为 HTML 类型
-          opts.settings = vim.tbl_deep_extend("force", opts.settings, {
-            tailwindCSS = {
-              includeLanguages = {
-                elixir = "html-eex",
-                eelixir = "html-eex",
-                heex = "html-eex",
-              },
-            },
-          })
-
-          -- 添加额外包含的文件类型（如果 opts.filetypes_include 有定义）
-          vim.list_extend(opts.filetypes, opts.filetypes_include or {})
-        end,
-      },
+      -- setup = {
+      --   tailwindcss = function(_, opts)
+      --     -- 获取 LazyVim 内置的 tailwindcss LSP 默认配置
+      --     local tw = LazyVim.lsp.get_raw_config("tailwindcss")
+      --
+      --     -- 如果没有配置文件类型，则初始化为空表
+      --     opts.filetypes = opts.filetypes or {}
+      --
+      --     -- 过滤掉 opts.filetypes_exclude 中指定的文件类型（如果有）
+      --     --- @param ft string
+      --     opts.filetypes = vim.tbl_filter(function(ft)
+      --       return not vim.tbl_contains(opts.filetypes_exclude or {}, ft)
+      --     end, opts.filetypes)
+      --
+      --     -- 深度合并自定义设置，包括让 LSP 识别 Elixir 相关的模板语言文件为 HTML 类型
+      --     opts.settings = vim.tbl_deep_extend("force", opts.settings, {
+      --       tailwindCSS = {
+      --         includeLanguages = {
+      --           elixir = "html-eex",
+      --           eelixir = "html-eex",
+      --           heex = "html-eex",
+      --         },
+      --       },
+      --     })
+      --
+      --     -- 添加额外包含的文件类型（如果 opts.filetypes_include 有定义）
+      --     vim.list_extend(opts.filetypes, opts.filetypes_include or {})
+      --   end,
+      -- },
     },
   },
 }
